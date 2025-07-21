@@ -1,0 +1,132 @@
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+interface ButtonClickListener {
+    int rollDiceClicked(int value);
+	void playTurn(int result);
+}
+
+// STARTING EDITS NOW - LAST SAVE HERE. (11/11/2023 22:04)
+
+public class Gui extends JPanel{  
+    private ButtonClickListener buttonClickListener;
+    private Image backgroundImage;
+    private Image playerIconImage;
+    private BoardPositions positions;
+    private int playerX;
+    private int playerY;
+
+
+    private JLabel diceRollValue;
+    private JLabel positionLabel;
+    private JLabel categoryLogic;
+
+
+
+    public Gui(ButtonClickListener listener) {
+        this.buttonClickListener = listener;
+
+        setLayout(null);
+
+        //Dice Roll Components 1st position.
+
+        diceRollValue = new JLabel("Dice Roll: ");
+        diceRollValue.setBackground(new Color(255, 255, 255));
+        diceRollValue.setForeground(Color.WHITE);
+        diceRollValue.setBounds(1017, 50, 90, 21);
+        diceRollValue.setFont(new Font("Arial", Font.BOLD, 16));
+        add(diceRollValue);
+
+        JButton rollDiceButton = new JButton("Roll Dice");
+        rollDiceButton.setBounds(1015, 91, 85, 21);
+        add(rollDiceButton);
+
+
+        // Player Position Info
+        positionLabel = new JLabel("Player Position: ");
+        positionLabel.setBackground(new Color(255, 255, 255));
+        positionLabel.setForeground(Color.WHITE);
+        positionLabel.setBounds(1010, 140, 200, 21);
+        positionLabel.setFont(new Font("Arial", Font.BOLD, 16));
+        add(positionLabel);
+
+        //Prints out Category Info
+        categoryLogic = new JLabel(".");
+        categoryLogic.setBackground(new Color(255, 255, 255));
+        categoryLogic.setForeground(Color.WHITE);
+        categoryLogic.setBounds(900, 250, 300, 21);
+        categoryLogic.setFont(new Font("Arial", Font.BOLD, 16));
+        add(categoryLogic);
+
+        //Background Image (gameboard) & playicon.
+        backgroundImage = new ImageIcon("gameboard.png").getImage();
+        playerIconImage = new ImageIcon("playericon.png").getImage();
+        playerIconImage = playerIconImage.getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+
+
+        positions = new BoardPositions();
+
+        // updatePlayerPosition
+
+
+
+
+        rollDiceButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int result = rollDice();
+                if (buttonClickListener != null) {
+                    //buttonClickListener.rollDiceClicked(result);
+                	buttonClickListener.playTurn(result);
+
+                }
+            }
+        });
+
+
+    }
+
+    public int rollDice() {
+        return (int) (Math.random() * 6) + 1; // Simulate rolling a 6-sided dice
+    }
+    //Updates dice roll value from GameEngine
+    public void updateDiceRollValue (int value) {
+    	diceRollValue.setText("Dice Roll: "+ value);
+    }
+    //Updates updatePlayerPosition value from GameEngine
+    public void updatePlayerPosition(int position) {
+		positionLabel.setText("Player Position: " + position);
+    }
+    //Updates updatecategoryLogic value from GameEngine
+	public void updatecategoryLogic(String text) {
+		categoryLogic.setText(text);
+	}
+
+	public void updatePlayerIconPosition(int positionX, int positionY) {
+		playerX = positions.getPositionX(positionX);
+		playerY = positions.getPositionY(positionY);
+
+		repaint();
+
+	}
+
+    // Other UI-related methods
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+
+        Graphics2D g2d = (Graphics2D) g;
+        g2d.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
+        g2d.drawImage(playerIconImage, playerX, playerY, null);
+    }
+}
