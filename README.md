@@ -81,10 +81,14 @@ Each method includes at least 2 unit tests. Tests cover:
 >  If using MySQL, make sure your XAMPP server is running and the credentials in `DBCredentials.java` are correct.
 
 ##  Screenshots (Optional)
+Main Menu:
 <img width="1181" height="759" alt="Main Menu" src="https://github.com/user-attachments/assets/3f5a3f3d-9f9e-4d28-ac45-9a43f9dae576" />
-_Add screenshots or GIFs of the game and GUI here._
-
----
+Admin Menu:
+<img width="1182" height="763" alt="admin-panel" src="https://github.com/user-attachments/assets/002af1fb-777e-42bc-badd-d142293c6412" />
+Game board:
+<img width="1182" height="759" alt="Main-board" src="https://github.com/user-attachments/assets/8a67a342-2a17-4869-8f8e-c31a0f912586" />
+Asking Question:
+<img width="1182" height="759" alt="asking-question" src="https://github.com/user-attachments/assets/06fca7a3-208c-48e2-aa8c-2a10f55cfdf4" />
 
 **Author**: Leigh Clarke  
 **Module**: University Coursework – Software Engineering Portfolio  
