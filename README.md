@@ -23,12 +23,9 @@ This project is a modified version of *Trivial Pursuit*, developed as a universi
 - **Custom Board Feature**: A circular board UI with a player icon that moves based on dice rolls.
 
 ###  Circular Board Movement
-The GUI includes a rotating board mechanic where:
-- A player icon is drawn on a circular path.
-- Each dice roll moves the player along that circle by a fixed angle (e.g., 30° per position).
-- Movement is calculated using `Math.cos()` and `Math.sin()` to determine new (x, y) coordinates based on the angle and radius.
+The GUI includes a visually engaging circular game board with 24 unique positions. Each time the player rolls the dice, their icon moves to the next position on the board, creating the effect of rotating around a circular path.
 
-This adds a dynamic, board-game feel to the otherwise text-heavy quiz interface.
+The player’s position is updated using pre-defined (x, y) coordinates that follow a smooth, circular layout. This adds a dynamic and interactive board-game feel to the quiz experience
 
 ###  Admin Tools
 - Add single or multiple questions to specific CSVs or MySQL tables.
