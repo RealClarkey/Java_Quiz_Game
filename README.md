@@ -4,7 +4,7 @@ This project is a modified version of *Trivial Pursuit*, developed as a universi
 
 ##  Game Overview
 
-- Roll a dice to randomly select one of six quiz categories.
+- Roll a dice to give a random number, player icon lands on a colour which selects the category for questions.
 - Answer a question from that category.
 - Continue rolling and answering until you either reach a specified number of correct answers or lose all your lives.
 - Questions are loaded from CSV files or a MySQL database and are not repeated within the same game.
